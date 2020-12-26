@@ -1,0 +1,13 @@
+{% extends 'main_template.html' %}
+
+{% block main %}
+    <h6>Здравствуйте, {{ user }}</h6>
+    <h1>Последние добавленные заметки</h1>
+    {% for note in all_notes %}
+        <a href="{% url 'note-detail' slug=note.slug %}"><h3><font color="green">{{ note.title }}</font></h3></a>
+        <p><i>{{ note.text|truncatewords:3|linebreaks }}</i></p>
+    {% endfor %}
+{% include 'pagination.html' with page=notes %}
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "main_template.html" %}
+{% block title %}Поделиться заметкой{% endblock %}
+{% block content %}
+    {% if sent %}
+        <h1>Заметка отправлено</h1>
+        <p>"{{ note.title }}" успешно направлено {{ form.cleaned_data.to }}.</p>
+    {% else %}
+        <h1>Поделиться "{{ note.title }}" через e-mail</h1>
+        <form action="." method="post">
+            {{ form }}
+            {% csrf_token %}
+            <input type="submit" value="Отправить">
+        </form>
+    {% endif %}
+{% endblock %}
